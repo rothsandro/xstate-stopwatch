@@ -2,6 +2,8 @@
 
 Implement a simple stopwatch using XState + React.
 
+https://github.com/rothsandro/xstate-stopwatch/assets/16229645/f0cc3525-4d24-40d8-af1b-06e6ce48ad35
+
 ## Requirements
 
 - It's stopped by default and shows "0" seconds.
