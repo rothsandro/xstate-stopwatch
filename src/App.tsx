@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { FC } from "react";
+import "./App.css";
+import { setup } from "xstate";
+import { useMachine } from "@xstate/react";
+import { createBrowserInspector } from "@statelyai/inspect";
 
-function App() {
-  const [count, setCount] = useState(0)
+// Debugging (allow popups in your browser!)
+const { inspect } = createBrowserInspector();
+
+const machine = setup({}).createMachine({});
+
+const App: FC = () => {
+  const [snapshot, send] = useMachine(machine, { inspect });
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>Stopwatch</h1>
+      <div>Time: {0}</div>
+      <div className="actions">
+        <button>Start</button>
+        <button disabled>Stop</button>
+        <button disabled>Reset</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
